@@ -24,7 +24,7 @@
                     <a href="${pageContext.request.contextPath}/vote?discovery_id=${discovery.id}&vote=VOTE_UP"
                         class="btn btn-block btn-primary btn-success">
                     <span class="glyphicon glyphicon-arrow-up"></span>  </a>
-                    <div class="well well-sm centered"><c:out value="${discovery.upVote - discovery.downVote}" /></div>
+                    <div class="well well-sm centered"><p style="text-align: center;"><span style="font-size: 1.35em;"><strong><c:out value="${discovery.upVote - discovery.downVote}" /></strong></span></p></div>
                     <a href="${pageContext.request.contextPath}/vote?discovery_id=${discovery.id}&vote=VOTE_DOWN"
                         class="btn btn-block btn-primary btn-warning">
                     <span class="glyphicon glyphicon-arrow-down"></span>  </a>
@@ -34,7 +34,7 @@
                   <h6><small>Dodane przez: <c:out value="${discovery.user.username}" />, 
                   Dnia: <fmt:formatDate value="${discovery.timestamp}" pattern="dd/mm/YYYY"/></small></h6>
                   <p><c:out value="${discovery.description}" /></p>
-                  <a href="<c:out value="${discovery.url}" />" class="btn btn-default btn-xs">Przejdź do strony</a>
+                  <a href="<c:out value="${discovery.url}" />" class="btn btn-success">Przejdź do strony</a>
                 </div>
               </div>
             </div>
