@@ -28,6 +28,21 @@ public class DiscoveryService {
         discovery.setTimestamp(new Timestamp(new Date().getTime()));
         return discovery;
     }
+     
+    public Discovery getDiscoveryById(long discoveryId) {
+        DAOFactory factory = DAOFactory.getDAOFactory();
+        DiscoveryDAO discoveryDao = factory.getDiscoveryDAO();
+        Discovery discovery = discoveryDao.read(discoveryId);
+        return discovery;
+    }
+     
+    public boolean updateDiscovery(Discovery discovery) {
+        DAOFactory factory = DAOFactory.getDAOFactory();
+        DiscoveryDAO discoveryDao = factory.getDiscoveryDAO();
+        boolean result = discoveryDao.update(discovery);
+        return result;
+    }
+     
     public List<Discovery> getAllDiscoveries() {
         return getAllDiscoveries(null);
     }
