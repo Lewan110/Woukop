@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Woudddkop</title>
+    <title>Woukop</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -34,7 +34,7 @@
                   <h6><small>Dodane przez: <c:out value="${discovery.user.username}" />, 
                   Dnia: <fmt:formatDate value="${discovery.timestamp}" pattern="dd/mm/YYYY"/></small></h6>
                   <p><c:out value="${discovery.description}" /></p>
-                  <a href="<c:out value="${discovery.url}" />" class="btn btn-success">Przejdź do strony</a>
+                  <a href="<c:out value="${pageContext.request.contextPath}/discovery" />" class="btn btn-success">Przejdź do strony</a>
                 </div>
               </div>
             </div>
