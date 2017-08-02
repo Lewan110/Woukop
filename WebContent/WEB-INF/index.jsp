@@ -34,7 +34,7 @@
                   <h6><small>Dodane przez: <c:out value="${discovery.user.username}" />, 
                   Dnia: <fmt:formatDate value="${discovery.timestamp}" pattern="dd/mm/YYYY"/></small></h6>
                   <p><c:out value="${discovery.description}" /></p>
-                  <a href="<c:out value="${pageContext.request.contextPath}/discovery" />" class="btn btn-success">Przejdź do strony</a>
+                  <a href="<c:out value="${pageContext.request.contextPath}/discovery?url=${discovery.id}" />" class="btn btn-success">Przejdź do strony</a>
                 </div>
               </div>
             </div>

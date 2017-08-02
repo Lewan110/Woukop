@@ -10,6 +10,8 @@ public abstract class DAOFactory {
     public abstract UserDAO getUserDAO();
  
     public abstract VoteDAO getVoteDAO();
+    
+    public abstract CommentDAO getCommentDAO();
  
     public static DAOFactory getDAOFactory() {
         DAOFactory factory = null;

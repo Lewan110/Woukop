@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
-@WebServlet("/discovery")
+@WebServlet("/znalezisko")
 public class DiscoveryController extends HttpServlet {
     private static final long serialVersionUID = 1L;
  
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String urlParam=request.getParameter("url");
     	request.getRequestDispatcher("WEB-INF/discovery.jsp").forward(request, response);
          
         
