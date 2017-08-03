@@ -31,7 +31,6 @@ public class DiscoveryDAOImpl implements DiscoveryDAO {
     private static final String UPDATE_DISCOVERY = 
         "UPDATE discovery SET name=:name, description=:description, url=:url, user_id=:user_id, date=:date, up_vote=:up_vote, down_vote=:down_vote "
         + "WHERE discovery_id=:discovery_id;";
-    private static final String CREATE_VIEW_DISCOVERY="SELECT name,description,url,date FROM discovery WHERE id=:id;";
  
     private NamedParameterJdbcTemplate template;
      
@@ -39,12 +38,7 @@ public class DiscoveryDAOImpl implements DiscoveryDAO {
         template = new NamedParameterJdbcTemplate(ConnectionProvider.getDataSource());
     }
     
-    @Override
-	public Discovery getDataForView(Long DiscoveryID) {
-		Discovery resultDiscovery=new Discovery();
-		
-		return resultDiscovery;
-	}
+    
  
     @Override
     public Discovery create(Discovery discovery) {

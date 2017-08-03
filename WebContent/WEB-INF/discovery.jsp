@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
   <head>
     <title>Weekop</title>
@@ -17,10 +18,10 @@
      <div class="container">
       
      
-      <h1>Znalezisko<h1>
-        <h5>htttp://znalezisko.pl<h5>
+      <h1>${requestScope.discovery.name}<h1>
+        <h5>${requestScope.discovery.url}<h5>
           <div class="col-md-6">
-          <h4>opis znaleziska test opis znaleziska test opis znaleziska testopis znaleziska testopis znaleziska testopis znaleziska testopis znaleziska testopis znaleziska testopis znaleziska testopis znaleziska testopis znaleziska testopis znaleziska testopis znaleziska test<h4>
+          <h4>${requestScope.discovery.description}<h4>
     </div>
 <div class="row">
   <div class="col-sm-12">
