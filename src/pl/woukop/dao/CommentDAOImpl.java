@@ -1,9 +1,12 @@
 package pl.woukop.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
- 
+
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -11,6 +14,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
  
 import pl.woukop.model.Comment;
+import pl.woukop.model.Discovery;
+import pl.woukop.model.User;
 import pl.woukop.util.ConnectionProvider;
 
 
@@ -20,6 +25,10 @@ public class CommentDAOImpl implements CommentDAO {
 	private static final String CREATE_COMMENT = 
 			"INSERT INTO comment(comment, discovery_id, user_id)"
 			+ "VALUES(:comment, :discovery_id, :user_id);";
+	
+	private static final String READ_ALL_COMMENTS = 
+		      "SELECT user.user_id, username, email, is_active, password, discovery.discovery_id, name, description, url, date, up_vote, down_vote, comment_id,comment "
+		      + "FROM comment LEFT JOIN user ON comment.user_id=user.user_id LEFT JOIN discovery ON comment.discovery_id=discovery.discovery_id;";
 	
 	public CommentDAOImpl() {
         template = new NamedParameterJdbcTemplate(ConnectionProvider.getDataSource());
@@ -65,8 +74,38 @@ public class CommentDAOImpl implements CommentDAO {
 
 	@Override
 	public List<Comment> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Comment> comments = template.query(READ_ALL_COMMENTS, new CommentRowMapper());
+		return comments;
 	}
+	 private class CommentRowMapper implements RowMapper<Comment> {
+	        @Override
+	        public Comment mapRow(ResultSet resultSet, int row) throws SQLException {
+	        	Comment comment =new Comment();
+	        	comment.setId(resultSet.getLong("comment_id"));
+	        	comment.setContent(resultSet.getString("comment"));
+	            
+	        	
+	        	
+	        	Discovery discovery = new Discovery();
+	            discovery.setId(resultSet.getLong("discovery_id"));
+	            discovery.setName(resultSet.getString("name"));
+	            discovery.setDescription(resultSet.getString("description"));
+	            discovery.setUrl(resultSet.getString("url"));
+	            discovery.setUpVote(resultSet.getInt("up_vote"));
+	            discovery.setDownVote(resultSet.getInt("down_vote"));
+	            discovery.setTimestamp(resultSet.getTimestamp("date"));
+	            User user = new User();
+	            user.setId(resultSet.getLong("user_id"));
+	            user.setUsername(resultSet.getString("username"));
+	            user.setEmail(resultSet.getString("email"));
+	            user.setPassword(resultSet.getString("password"));
+	            discovery.setUser(user);
+	            comment.setUser(user);
+	            comment.setDiscovery(discovery);
+	            
+	            
+	            return comment;
+	        }
+	    }
 
 }

@@ -1,8 +1,10 @@
 package pl.woukop.service;
 
 import java.sql.Timestamp;
+import java.util.Comparator;
 import java.util.Date;
- 
+import java.util.List;
+
 import pl.woukop.dao.DAOFactory;
 import pl.woukop.dao.CommentDAO;
 import pl.woukop.model.Discovery;
@@ -25,5 +27,13 @@ public class CommentService {
 		comment.setUser(user);
 		return comment;
 	}
+	public List<Comment> getAllComments() {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+        CommentDAO commentDao = factory.getCommentDAO();
+        List<Comment> comments = commentDao.getAll();
+        return comments;
+    }
+     
+    
 
 }

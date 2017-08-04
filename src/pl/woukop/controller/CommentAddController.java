@@ -1,12 +1,15 @@
 package pl.woukop.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pl.woukop.model.Comment;
 import pl.woukop.model.Discovery;
 import pl.woukop.model.User;
 import pl.woukop.service.CommentService;
@@ -49,6 +52,8 @@ public class CommentAddController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/znalezisko?url="+IDParam);
         
         }
+        
+        
 	}
 
 }

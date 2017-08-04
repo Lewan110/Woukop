@@ -1,11 +1,14 @@
 package pl.woukop.controller;
 
+import pl.woukop.model.Comment;
 import pl.woukop.model.Discovery;
 import pl.woukop.model.User;
 import pl.woukop.service.CommentService;
 import pl.woukop.service.DiscoveryService;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +31,19 @@ public class DiscoveryController extends HttpServlet {
     	resultDiscovery=discoveryService.getDiscoveryById(IDParam);
     	request.getSession().setAttribute("discovery", resultDiscovery);
     	request.setAttribute("discovery", resultDiscovery);
+    	
+    	CommentService commentService=new CommentService();
+    	List<Comment> allComments=commentService.getAllComments();
+    	request.getSession().setAttribute("comments", allComments);
+        	
+        	
+        
+    	
+    	
+    	
+    	
+    	
+    	
     	request.getRequestDispatcher("WEB-INF/discovery.jsp").forward(request, response);
     }
     	@Override
