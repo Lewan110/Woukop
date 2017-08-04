@@ -31,6 +31,7 @@ public class CommentService {
 		DAOFactory factory = DAOFactory.getDAOFactory();
         CommentDAO commentDao = factory.getCommentDAO();
         List<Comment> comments = commentDao.getAll();
+        System.out.println(comments.get(0));
         return comments;
     }
      

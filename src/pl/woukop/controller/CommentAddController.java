@@ -52,7 +52,7 @@ public class CommentAddController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/znalezisko?url="+IDParam);
         
         }
-        
+        response.sendRedirect(request.getContextPath() + "/znalezisko?url="+IDParam);
         
 	}
 

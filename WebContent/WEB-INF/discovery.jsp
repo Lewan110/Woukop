@@ -34,6 +34,9 @@
             </div>
 </div>
 <div class="row">
+<c:if test="${not empty requestScope.comments}">
+	<c:forEach var="comment" items="${requestScope.comments}">
+
 <div class="col-sm-1">
 <div class="thumbnail">
 <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
@@ -42,14 +45,13 @@
 
 <div class="col-sm-5">
 
-<c:if test="${not empty SessionScope.comments}">
-	<c:forEach var="comment" items="${SessionScope.comments}">
+
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<strong>${SessionScope.comment.user.username}</strong> 
+				<strong>${comment.user.username}</strong> 
 			</div>
 			<div class="panel-body">
-			${SessionScope.comment.content}
+			${comment.content}
 			</div><!-- /panel-body -->
 		</div><!-- /panel panel-default -->
 	</c:forEach>

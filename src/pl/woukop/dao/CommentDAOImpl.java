@@ -25,10 +25,12 @@ public class CommentDAOImpl implements CommentDAO {
 	private static final String CREATE_COMMENT = 
 			"INSERT INTO comment(comment, discovery_id, user_id)"
 			+ "VALUES(:comment, :discovery_id, :user_id);";
-	
-	private static final String READ_ALL_COMMENTS = 
-		      "SELECT user.user_id, username, email, is_active, password, discovery.discovery_id, name, description, url, date, up_vote, down_vote, comment_id,comment "
-		      + "FROM comment LEFT JOIN user ON comment.user_id=user.user_id LEFT JOIN discovery ON comment.discovery_id=discovery.discovery_id;";
+	private static final String READ_COMMENTS_BY_DISCOVERY = 
+	        "SELECT comment, discovery_id, user_id"
+	        + "FROM comment  WHERE discovery_id=:discovery_id;";
+	private static final String READ_ALL_COMMENTS = "SELECT comment, discovery_id, user_id FROM comment";
+		     // "SELECT user.user_id, username, email, is_active, password, discovery.discovery_id, name, description, url, date, up_vote, down_vote, comment_id,comment "
+		    //  + "FROM comment LEFT JOIN user ON comment.user_id=user.user_id LEFT JOIN discovery ON comment.discovery_id=discovery.discovery_id;";
 	
 	public CommentDAOImpl() {
         template = new NamedParameterJdbcTemplate(ConnectionProvider.getDataSource());
@@ -59,6 +61,12 @@ public class CommentDAOImpl implements CommentDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public List<Comment> readByDiscovery(Long discovery_id){
+		List<Comment> comments = template.query(READ_COMMENTS_BY_DISCOVERY, new CommentRowMapper());
+		
+		return comments;
+	}
 
 	@Override
 	public boolean update(Comment updateObject) {
@@ -81,11 +89,14 @@ public class CommentDAOImpl implements CommentDAO {
 	        @Override
 	        public Comment mapRow(ResultSet resultSet, int row) throws SQLException {
 	        	Comment comment =new Comment();
-	        	comment.setId(resultSet.getLong("comment_id"));
+	        	comment.setId(2);
 	        	comment.setContent(resultSet.getString("comment"));
-	            
-	        	
-	        	
+	            Discovery discovery=new Discovery();
+	            User user = new User();
+	            user.setUsername("noOne");
+	            comment.setDiscovery(discovery);
+	            comment.setUser(user);
+	        	/*
 	        	Discovery discovery = new Discovery();
 	            discovery.setId(resultSet.getLong("discovery_id"));
 	            discovery.setName(resultSet.getString("name"));
@@ -102,7 +113,7 @@ public class CommentDAOImpl implements CommentDAO {
 	            discovery.setUser(user);
 	            comment.setUser(user);
 	            comment.setDiscovery(discovery);
-	            
+	            */
 	            
 	            return comment;
 	        }

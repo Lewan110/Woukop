@@ -32,9 +32,7 @@ public class DiscoveryController extends HttpServlet {
     	request.getSession().setAttribute("discovery", resultDiscovery);
     	request.setAttribute("discovery", resultDiscovery);
     	
-    	CommentService commentService=new CommentService();
-    	List<Comment> allComments=commentService.getAllComments();
-    	request.getSession().setAttribute("comments", allComments);
+    	saveCommentsInRequest(request);
         	
         	
         
@@ -49,7 +47,10 @@ public class DiscoveryController extends HttpServlet {
     	@Override
     	    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
     	            throws ServletException, IOException {
-    	        
-        
-    }
+    			}
+    	private void saveCommentsInRequest(HttpServletRequest request) {
+    		CommentService commentService=new CommentService();
+    		List<Comment> allComments=commentService.getAllComments();
+    		request.setAttribute("comments", allComments);
+    	}
 }
