@@ -19,7 +19,7 @@ public class MysqlDAOFactory extends DAOFactory {
     }
 
 	@Override
-	public CommentDAOImpl getCommentDAO() {
+	public CommentDAO getCommentDAO() {
 		return new CommentDAOImpl();
 	}
     

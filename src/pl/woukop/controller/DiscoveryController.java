@@ -1,6 +1,8 @@
 package pl.woukop.controller;
 
 import pl.woukop.model.Discovery;
+import pl.woukop.model.User;
+import pl.woukop.service.CommentService;
 import pl.woukop.service.DiscoveryService;
 
 import java.io.IOException;
@@ -19,15 +21,19 @@ public class DiscoveryController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	Long IDParam=Long.valueOf(request.getParameter("url"));
+    	request.getSession().setAttribute("url", IDParam);
+    	request.setAttribute("url", IDParam);
     	Discovery resultDiscovery=new Discovery();
     	DiscoveryService discoveryService = new DiscoveryService();
     	resultDiscovery=discoveryService.getDiscoveryById(IDParam);
+    	request.getSession().setAttribute("discovery", resultDiscovery);
     	request.setAttribute("discovery", resultDiscovery);
-    
-        
-        
     	request.getRequestDispatcher("WEB-INF/discovery.jsp").forward(request, response);
-         
+    }
+    	@Override
+    	    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    	            throws ServletException, IOException {
+    	        
         
     }
 }

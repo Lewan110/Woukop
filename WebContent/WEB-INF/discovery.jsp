@@ -52,11 +52,13 @@ tresc komentarza tresc komentarza tresc komentarzatresc komentarzatresc komentar
        <div class="col-md-12"><br></div>
        
     <div class="col-md-6">
+    
       
     						<div class="widget-area no-padding blank">
 								<div class="status-upload">
-									<form>
-										<textarea placeholder="Treść komentarza" ></textarea>
+									<form class="form-signin" method="post" action="addcomment">
+										<input name="content" type="text" class="form-control" placeholder="pole na Twój komentarz?"
+                    />
 										<br>
 										<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Dodaj komentarz</button>
 									</form>
