@@ -26,10 +26,10 @@ public class CommentDAOImpl implements CommentDAO {
 			"INSERT INTO comment(comment, discovery_id, user_id)"
 			+ "VALUES(:comment, :discovery_id, :user_id);";
 	private static final String READ_COMMENTS_BY_DISCOVERY = 
-	        "SELECT comment, discovery_id, user_id"
-	        + "FROM comment  WHERE discovery_id=:discovery_id;";
+			"SELECT user.user_id, username, comment_id,comment "
+			+ "FROM comment LEFT JOIN user ON comment.user_id=user.user_id"
+			+" WHERE discovery_id=:discovery_id;";
 	private static final String READ_ALL_COMMENTS = 
-			//"SELECT comment, discovery_id, user_id FROM comment";
 		      "SELECT user.user_id, username, comment_id,comment "
 		      + "FROM comment LEFT JOIN user ON comment.user_id=user.user_id";
 	
@@ -64,7 +64,8 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 	@Override
 	public List<Comment> readByDiscovery(Long discovery_id){
-		List<Comment> comments = template.query(READ_COMMENTS_BY_DISCOVERY, new CommentRowMapper());
+		SqlParameterSource paramSource = new MapSqlParameterSource("discovery_id", discovery_id);
+		List<Comment> comments = template.query(READ_COMMENTS_BY_DISCOVERY, paramSource, new CommentRowMapper());
 		
 		return comments;
 	}

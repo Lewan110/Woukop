@@ -19,6 +19,7 @@ public class CommentService {
         CommentDAO commentDao = factory.getCommentDAO();
         commentDao.create(comment);
 	}
+	//dd
 	
 	private Comment createCommentObject(String content, Discovery discovery, User user) {
 		Comment comment = new Comment();
@@ -35,6 +36,12 @@ public class CommentService {
         return comments;
     }
      
+	public List<Comment> readByDiscovery(Long discovery_id) {
+		DAOFactory factory = DAOFactory.getDAOFactory();
+        CommentDAO commentDao = factory.getCommentDAO();
+        List<Comment> comments = commentDao.readByDiscovery(discovery_id);
+        return comments;
+    }
     
 
 }

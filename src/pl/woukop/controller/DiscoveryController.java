@@ -23,6 +23,7 @@ public class DiscoveryController extends HttpServlet {
  
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	//pobiera idywidualny nr znaleziska z parametru ?url
     	Long IDParam=Long.valueOf(request.getParameter("url"));
     	request.getSession().setAttribute("url", IDParam);
     	request.setAttribute("url", IDParam);
@@ -49,8 +50,9 @@ public class DiscoveryController extends HttpServlet {
     	            throws ServletException, IOException {
     			}
     	private void saveCommentsInRequest(HttpServletRequest request) {
+    		Long IDParam=Long.valueOf(request.getParameter("url"));
     		CommentService commentService=new CommentService();
-    		List<Comment> allComments=commentService.getAllComments();
+    		List<Comment> allComments=commentService.readByDiscovery(IDParam);
     		request.setAttribute("comments", allComments);
     	}
 }
