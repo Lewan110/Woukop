@@ -26,7 +26,7 @@
 		<h4>${requestScope.discovery.description}<h4>
 	</div>
 <div class="row">
-  <div class="col-sm-12">
+<div class="col-sm-8">
   <br>
   <h3>Komentarze:</h3>
   
@@ -34,6 +34,7 @@
             </div>
 </div>
 <div class="row">
+<div class=comments>
 <c:if test="${not empty requestScope.comments}">
 	<c:forEach var="comment" items="${requestScope.comments}">
 
@@ -43,7 +44,6 @@
 </div><!-- /thumbnail -->
 </div><!-- /col-sm-1 -->
 
-<div class="col-sm-5">
 
 
 		<div class="panel panel-default">
@@ -56,6 +56,7 @@
 		</div><!-- /panel panel-default -->
 	</c:forEach>
 </c:if>
+</div><!-- comments -->
 <div class="row">
 
 <div class="col-md-12"><br></div>      

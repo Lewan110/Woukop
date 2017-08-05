@@ -49,11 +49,10 @@ public class CommentAddController extends HttpServlet {
         	//tworzenie komentarza do bazy danych
         	CommentService commentService = new CommentService();
             commentService.addComment(content, resDiscovery, authenticatedUser);
-            response.sendRedirect(request.getContextPath() + "/znalezisko?url="+IDParam);
+            
         
         }
         response.sendRedirect(request.getContextPath() + "/znalezisko?url="+IDParam);
-        
 	}
 
 }
