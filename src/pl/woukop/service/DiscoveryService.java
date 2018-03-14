@@ -11,7 +11,8 @@ import pl.woukop.model.Discovery;
 import pl.woukop.model.User;
  
 public class DiscoveryService {
-    public void addDiscovery(String name, String desc, String url, User user) {
+	
+	public void addDiscovery(String name, String desc, String url, User user) {
         Discovery discovery = createDiscoveryObject(name, desc, url, user);
         DAOFactory factory = DAOFactory.getDAOFactory();
         DiscoveryDAO discoveryDao = factory.getDiscoveryDAO();

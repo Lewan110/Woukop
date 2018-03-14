@@ -37,6 +37,8 @@ public class DiscoveryDAOImpl implements DiscoveryDAO {
     public DiscoveryDAOImpl() {
         template = new NamedParameterJdbcTemplate(ConnectionProvider.getDataSource());
     }
+    
+    
  
     @Override
     public Discovery create(Discovery discovery) {
@@ -116,4 +118,6 @@ public class DiscoveryDAOImpl implements DiscoveryDAO {
             return discovery;
         }
     }
+
+	
 }
